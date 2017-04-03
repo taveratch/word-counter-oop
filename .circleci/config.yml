@@ -16,7 +16,7 @@ jobs:
           command: mkdir bin && cd src && javac -d ../bin/ -cp ".:..:../lib/hamcrest-core-1.3.jar:../lib/junit-4.12.jar" main/**/*.java ; cd ..
       - run:
           name: Testing
-          command: cd bin && java -cp .:../lib/hamcrest-core-1.3.jar:../lib/junit-4.12.jar main.test.SuiteTester > result.txt ; cd ..
+          command: cd bin && java -cp .:../lib/hamcrest-core-1.3.jar:../lib/junit-4.12.jar test.SuiteTester > result.txt ; cd ..
       - run:
           name: Show Result
           command: cd bin && cat result.txt ; cd ..
