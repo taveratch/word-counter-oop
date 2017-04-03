@@ -1,3 +1,11 @@
 machine:
   java:
     version: openjdk8
+jobs:
+  build:
+    working_directory: ~/App
+    docker:
+      - image: java:8
+    branches:
+      ignore:
+        - master
