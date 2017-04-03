@@ -11,4 +11,16 @@ jobs:
         - master
     steps:
       - checkout
-      - run: echo "Hello World"
+      - run:
+          name: Compile
+          command: mkdir bin && cd src && javac -d ../bin/ -cp ".:..:../lib/hamcrest-core-1.3.jar:../lib/junit-4.12.jar" main/**/*.java ; cd ..
+      - run:
+          name: Testing
+          command: cd bin && java -cp .:../lib/hamcrest-core-1.3.jar:../lib/junit-4.12.jar main.test.SuiteTester > result.txt ; cd ..
+      - run:
+          name: Show Result
+          command: cd bin && cat result.txt ; cd ..
+      - run:
+          # Because when testing all script must pass through, so I determine this for checking fail case
+          name: Check Failure
+          command: if [ $(grep -o 'FAIL' bin/result.txt | wc -l) -eq 1 ]; then exit 1; else exit 0; fi
