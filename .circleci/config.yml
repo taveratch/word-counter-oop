@@ -24,3 +24,7 @@ jobs:
           # Because when testing all script must pass through, so I determine this for checking fail case
           name: Check Failure
           command: if [ $(grep -o 'FAIL' bin/result.txt | wc -l) -eq 1 ]; then exit 1; else exit 0; fi
+checkout:
+  post:
+    - git submodule sync
+    - git submodule update --recursive --remote
