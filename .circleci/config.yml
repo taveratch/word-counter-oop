@@ -11,3 +11,4 @@ jobs:
         - master
     steps:
       - checkout
+      - run: echo "Hello World"
